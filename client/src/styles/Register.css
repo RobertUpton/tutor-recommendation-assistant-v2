@@ -1,0 +1,123 @@
+/* Full page container */
+.register-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #08142e;
+    padding: 30px;
+}
+
+/* Register card */
+.register-card {
+    width: 450px;
+    background: #10204b;
+    border-radius: 18px;
+    padding: 45px;
+    border: 1px solid #243d74;
+    box-shadow: 0 20px 40px rgba(0,0,0,.35);
+}
+
+/* TutorMatch AI logo */
+.register-logo {
+    text-align: center;
+    color: white;
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+/* Highlight AI text */
+.register-logo span {
+    color: #3b82f6;
+}
+
+/* Main heading */
+.register-card h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 12px;
+    font-size: 40px;
+}
+
+/* Welcome message */
+.register-card p {
+    text-align: center;
+    color: #cbd5e1;
+    margin-bottom: 35px;
+}
+
+/* Form labels */
+.register-card label {
+    display: block;
+    color: white;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* Input fields */
+.register-card input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 22px;
+    border-radius: 10px;
+    border: 1px solid #36518d;
+    background: #16295b;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+/* Placeholder text */
+.register-card input::placeholder {
+    color: #9ca3af;
+}
+
+/* Input focus */
+.register-card input:focus {
+    border-color: #3b82f6;
+}
+
+/* Create Account button */
+.register-card button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Button hover */
+.register-card button:hover {
+    background: #3b82f6;
+}
+
+/* Footer */
+.register-footer {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* Footer text */
+.register-footer p {
+    margin: 0;
+}
+
+/* Sign in link */
+.register-footer a {
+    color: #60a5fa;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Link hover */
+.register-footer a:hover {
+    text-decoration: underline;
+}

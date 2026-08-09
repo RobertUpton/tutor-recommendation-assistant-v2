@@ -1,0 +1,259 @@
+/* Main dashboard background */
+.dashboard-layout {
+  min-height: 100vh;
+  background: #020b22;
+  color: white;
+}
+
+/* Top navigation bar */
+.dashboard-topbar {
+  height: 72px;
+  background: #03163d;
+  border-bottom: 1px solid #10244a;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+/* Left side of navbar */
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+/* TutorMatch logo */
+.dashboard-logo {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.dashboard-logo span {
+  color: #3b82f6;
+}
+
+/* Sidebar menu button */
+.sidebar-toggle {
+  background: transparent;
+  border: none;
+  color: white;
+
+  font-size: 24px;
+  cursor: pointer;
+
+  padding: 6px;
+  border-radius: 8px;
+
+  transition: background 0.2s ease;
+}
+
+.sidebar-toggle:hover {
+  background: #0b214c;
+}
+
+/* Right side of navbar */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+/* Notification */
+.notification {
+  position: relative;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -7px;
+  right: -8px;
+
+  width: 18px;
+  height: 18px;
+
+  background: #ef4444;
+  color: white;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* User information */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* User avatar */
+.user-avatar {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #60a5fa,
+    #2563eb
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* User name */
+.user-name {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* User role */
+.user-role {
+  margin: 2px 0 0;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+/* Main dashboard area */
+.dashboard-body {
+  display: flex;
+  min-height: calc(100vh - 72px);
+}
+
+/* Sidebar */
+.dashboard-sidebar {
+  width: 220px;
+
+  background: #03163d;
+  border-right: 1px solid #10244a;
+
+  padding: 28px 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+
+  transition: width 0.25s ease, padding 0.25s ease;
+}
+
+/* Collapsed sidebar */
+.dashboard-sidebar.closed {
+  width: 0;
+  padding-left: 0;
+  padding-right: 0;
+  overflow: hidden;
+}
+
+/* Sidebar navigation */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Navigation links */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+
+  min-height: 48px;
+
+  padding: 0 14px;
+
+  border-radius: 12px;
+
+  color: #cbd5e1;
+  text-decoration: none;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Navigation hover */
+.sidebar-link:hover {
+  background: #071f4d;
+  color: white;
+}
+
+/* Active navigation item */
+.sidebar-link.active {
+  background: #071f4d;
+  color: #3b82f6;
+
+  box-shadow:
+    inset 3px 0 0 #3b82f6;
+}
+
+/* Navigation icon */
+.sidebar-icon {
+  width: 28px;
+  font-size: 18px;
+}
+
+/* Sign out section */
+.sidebar-bottom {
+  margin-top: auto;
+}
+
+/* Sign out button */
+.signout-button {
+  width: 100%;
+
+  min-height: 48px;
+
+  background: transparent;
+  color: #cbd5e1;
+
+  border: 1px solid #17305d;
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.signout-button:hover {
+  background: #071f4d;
+  color: white;
+}
+
+/* Main page content */
+.dashboard-content {
+  flex: 1;
+
+  padding: 32px;
+
+  min-width: 0;
+  box-sizing: border-box;
+}

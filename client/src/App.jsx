@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 import Register from "./pages/Register";
-//import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard";
 //import Tutors from "./pages/Tutors";
 //import Messages from "./pages/Messages";
 //import Profile from "./pages/Profile";
@@ -32,9 +32,9 @@ function AppContent() {
         <Route path="/" element=              {<Home />} />
         <Route path="/login" element=        {<Login />} />
         <Route path="/Register" element=  {<Register />} />
-       {/**  <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
         
-        
+        {/** 
         <Route path="/Tutors" element=      {<Tutors />} />
         <Route path="/messages" element=  {<Messages />} />
         <Route path="/profile" element=    {<Profile />} />

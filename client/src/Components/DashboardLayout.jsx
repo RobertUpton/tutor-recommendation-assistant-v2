@@ -1,193 +1,211 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+
+import "./DashboardLayout.css";
 
 function DashboardLayout({ children }) {
-
   const navigate = useNavigate();
 
- const handleLogout = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("user");
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
-  navigate("/");
-};
+  // Get the logged-in user's information
+  const user =
+    JSON.parse(localStorage.getItem("user")) || {};
 
-const user =
-  JSON.parse(
-    localStorage.getItem("user")
-  ) || {};
+  const userName = user.name || "User";
 
-  const userName =
-  user.name || "User";
+  const userInitial =
+    userName.charAt(0).toUpperCase();
 
-const userInitial =
-  userName.charAt(0).toUpperCase();
+  // Log the user out and return to the home page
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
 
-const [sidebarOpen, setSidebarOpen] =
-  useState(true);
-
+    navigate("/");
+  };
 
   return (
+    <div className="dashboard-layout">
 
-    // Full page container
-    <div style={{ minHeight: "100vh", backgroundColor: "#020f2b", color: "white" }}>
+      {/* Top navigation bar */}
+      <header className="dashboard-topbar">
 
-      {/* Topbar */}
-      <div style={{ backgroundColor: "#03163d", display: "flex", justifyContent: "space-between",
-      alignItems: "center", padding: "18px 25px", borderBottom: "1px solid #0f172a" }}>
+        {/* Logo and sidebar toggle */}
+        <div className="topbar-left">
 
-        {/* Left side */}
-        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-
-          {/* Logo */}
-          <h2 style={{ margin: 0, fontSize: "26px", fontWeight: "bold" }}>
-            TutorMatch <span style={{ color: "#3b82f6" }}>AI</span>
+          {/* TutorMatch AI logo */}
+          <h2 className="dashboard-logo">
+            TutorMatch <span>AI</span>
           </h2>
 
-
-          {/* Menu Icon */}
-          <div
-            onClick={() => setSidebarOpen(!sidebarOpen)} 
-            style={{ fontSize: "20px", cursor: "pointer" }}>
-
+          {/* Sidebar toggle button */}
+          <button
+            className="sidebar-toggle"
+            onClick={() =>
+              setSidebarOpen(!sidebarOpen)
+            }
+            aria-label="Toggle sidebar"
+          >
             ☰
-          </div>
+          </button>
 
         </div>
 
 
-        {/* Right side */}
-        <div
-          style={{ display: "flex", alignItems: "center",gap: "24px",}} >
+        {/* Right side of navbar */}
+        <div className="topbar-right">
 
           {/* Notification */}
-          <div
-            style={{position: "relative",cursor: "pointer",fontSize: "22px",}}>
+          <div className="notification">
+
             🔔
 
-            <div
-              style={{ position: "absolute",top: "-6px",
-                right: "-6px",width: "18px", height: "18px",
-                borderRadius: "50%", backgroundColor: "#ef4444",
-                color: "white",fontSize: "10px",display: "flex",
-                justifyContent: "center",alignItems: "center",fontWeight: "bold",}}>
+            <span className="notification-badge">
               3
-            </div>
+            </span>
+
           </div>
 
-          {/* User */}
-          <div
-            style={{ display: "flex",alignItems: "center",
-              
-            }}
-          >
 
-            <div
-              style={{width: "42px", height: "42px", borderRadius: "50%",
-                background:
-                  "linear-gradient(135deg,#60a5fa,#2563eb)",display: "flex",
-                justifyContent: "center",alignItems: "center",fontWeight: "bold",fontSize: "16px",}}>
+          {/* User information */}
+          <div className="user-info">
+
+            {/* User avatar */}
+            <div className="user-avatar">
               {userInitial}
             </div>
 
+            {/* User name and role */}
             <div>
-              <p
-                style={{
-                  margin: 0,
-                  fontWeight: "bold",
-                }}
-              >
+
+              <p className="user-name">
                 {userName}
               </p>
 
-              <p
-                style={{margin: 0,color: "#94a3b8",fontSize: "12px", }}>
+              <p className="user-role">
                 Student
               </p>
+
             </div>
 
           </div>
 
-            </div>
-            </div>
+        </div>
+
+      </header>
 
 
-      {/* Dashboard Body */}
-      <div style={{ display: "flex", minHeight: "calc(100vh - 73px)" }}>
+      {/* Dashboard body */}
+      <div className="dashboard-body">
 
         {/* Sidebar */}
-        <div style={{  width: sidebarOpen ? "165px" : "0px", backgroundColor: "#03163d", padding: "25px",
-        borderRight: "1px solid #0f172a", borderRight: "1px solid #0f172a", display: "flex", flexDirection: "column", }} > 
+        <aside
+          className={`dashboard-sidebar ${
+            !sidebarOpen ? "closed" : ""
+          }`}
+        >
 
-          {/* Sidebar Links */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+          {/* Navigation */}
+          <nav className="sidebar-nav">
 
-            
-            <Link 
-            to="/Dashboard"
-            style={{ backgroundColor: "#07173a", padding: "14px",
-            borderRadius: "14px", fontWeight: "500", margin: 0, cursor: "pointer", textDecoration: "none" }}>
-              {sidebarOpen && "Dashboard"}
-            </Link>
-
-            
-            <Link
-            to="/Tutors"
-             style={{ padding: "14px", borderRadius: "14px", margin: 0,
-            cursor: "pointer", color: "#cbd5e1" , textDecoration: "none"}}>
-              {sidebarOpen && "Browse Tutors"}
+            <NavLink
+              to="/Dashboard"
+              className={({ isActive }) =>
+                `sidebar-link ${
+                  isActive ? "active" : ""
+                }`
+              }
+            >
               
-            </Link>
 
-            <Link
-            to="/Bookings"
-             style={{ padding: "14px", borderRadius: "14px", margin: 0,
-            cursor: "pointer", color: "#cbd5e1" , textDecoration: "none"}}>
-              {sidebarOpen && " My Bookings"}
-            </Link>
+              Dashboard
+            </NavLink>
 
-            <Link 
-            to="/Messages"
-            style={{ padding: "14px", borderRadius: "14px", margin: 0,
-            cursor: "pointer", color: "#cbd5e1", textDecoration: "none"}}>
-              {sidebarOpen && "Messages"}
-            </Link>
 
-            <Link 
-            to="/Profile"
-            style={{ padding: "14px", borderRadius: "14px", margin: 0,
-            cursor: "pointer", color: "#cbd5e1", textDecoration: "none" }}>
-              {sidebarOpen && "Profile"}
-            </Link>
+            <NavLink
+              to="/Tutors"
+              className={({ isActive }) =>
+                `sidebar-link ${
+                  isActive ? "active" : ""
+                }`
+              }
+            >
+            
 
-            <Link 
-            to="/Settings"
-            style={{ padding: "14px", borderRadius: "14px", margin: 0,
-            cursor: "pointer", color: "#cbd5e1", textDecoration: "none" }}>
-              {sidebarOpen && "Settings"}
-            </Link>
+              Browse Tutors
+            </NavLink>
+
+
+            <NavLink
+              to="/Bookings"
+              className={({ isActive }) =>
+                `sidebar-link ${
+                  isActive ? "active" : ""
+                }`
+              }
+            >
+              My Bookings
+            </NavLink>
+
+
+            <NavLink
+              to="/Messages"
+              className={({ isActive }) =>
+                `sidebar-link ${
+                  isActive ? "active" : ""
+                }`
+              }
+            >
+               Messages
+            </NavLink>
+
+
+            <NavLink
+              to="/Profile"
+              className={({ isActive }) =>
+                `sidebar-link ${
+                  isActive ? "active" : ""
+                }`
+              }
+            >
+              Profile
+            </NavLink>
+
+
+            <NavLink
+              to="/Settings"
+              className={({ isActive }) =>
+                `sidebar-link ${
+                  isActive ? "active" : ""
+                }`
+              }
+            >
+              Settings
+            </NavLink>
+
+          </nav>
+
+
+          {/* Sign out */}
+          <div className="sidebar-bottom">
+
+            <button
+              className="signout-button"
+              onClick={handleLogout}
+            >
+               Sign Out
+            </button>
 
           </div>
 
-                  {/* Sign Out Button */}
-          <div style={{ marginTop: "auto" }}>
-
-            <button
-             onClick={handleLogout}
-              style={{padding: "14px",backgroundColor: "#07173a",color: "#cbd5e1",
-                border: "none", borderRadius: "14px",cursor: "pointer",fontWeight: "bold",}} >
-              {sidebarOpen && "Sign Out"}
-            </button>
-
-        </div>
-
-        </div>
+        </aside>
 
 
-        {/* Main content area */}
-        <div style={{ flex: 1, padding: "30px" }}>
+        {/* Main dashboard content */}
+        <main className="dashboard-content">
           {children}
-        </div>
+        </main>
 
       </div>
 

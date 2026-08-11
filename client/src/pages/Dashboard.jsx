@@ -14,15 +14,36 @@ function Dashboard() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/dashboard")
-      .then((response) => response.json())
-      .then((data) => {
-        setStats(data);
-      })
-      .catch((error) => {
-        console.error("Dashboard Error:", error);
+  const token = localStorage.getItem("token");
+
+  // No logged-in user means keep dashboard statistics at 0
+  if (!token) {
+    return;
+  }
+
+  fetch("http://localhost:5000/api/dashboard", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch dashboard statistics");
+      }
+
+      return response.json();
+    })
+    .then((data) => {
+      setStats({
+        upcomingSessions: data.upcomingSessions || 0,
+        savedTutors: data.savedTutors || 0,
+        completedSessions: data.completedSessions || 0,
       });
-  }, []);
+    })
+    .catch((error) => {
+      console.error("Dashboard Error:", error);
+    });
+}, []);
 
   return (
 

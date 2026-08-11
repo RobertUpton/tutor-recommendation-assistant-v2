@@ -2,6 +2,7 @@ import DashboardLayout from "../components/DashboardLayout";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 // Save tutor
 const handleSaveTutor = async (tutorId) => {
   const token = localStorage.getItem("token");
@@ -36,8 +37,11 @@ const handleSaveTutor = async (tutorId) => {
 };
 
 function Tutors() {
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const [tutors, setTutors] = useState([]);
+
+  // Controls which tutor tab is currently displayed
+  const [activeTab, setActiveTab] = useState("all");
 
   useEffect(() => {
     fetch("http://localhost:5000/api/tutors")
@@ -49,58 +53,58 @@ const navigate = useNavigate();
         console.error("Error fetching tutors:", error);
       });
 
-  }, 
-  []);
+  },
+    []);
 
 
-const handleBookTutor = async (tutorId) => {
+  const handleBookTutor = async (tutorId) => {
 
-  const user = JSON.parse(
-    localStorage.getItem("user")
-  );
-
-  if (!user) {
-    alert("Please login first");
-    return;
-  }
-
-  try {
-
-    const response = await fetch(
-      "http://localhost:5000/api/bookings",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: user.id,
-          tutorId,
-          sessionDate: new Date(),
-          notes: "",
-        }),
-      }
+    const user = JSON.parse(
+      localStorage.getItem("user")
     );
 
+    if (!user) {
+      alert("Please login first");
+      return;
+    }
 
-    const data = await response.json();
+    try {
 
-    if (response.ok) {
-      alert("Session booked!");
-    } else {
+      const response = await fetch(
+        "http://localhost:5000/api/bookings",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: user.id,
+            tutorId,
+            sessionDate: new Date(),
+            notes: "",
+          }),
+        }
+      );
 
-      alert(data.message);
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Session booked!");
+      } else {
+
+        alert(data.message);
+
+      }
+
+    } catch (error) {
+
+      console.error(error);
+      alert("Booking failed");
 
     }
 
-  } catch (error) {
-
-    console.error(error);
-    alert("Booking failed");
-
-  }
- 
-};
+  };
 
 
   return (
@@ -120,28 +124,67 @@ const handleBookTutor = async (tutorId) => {
 
       </div>
 
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+          marginBottom: "30px",
+        }}
+      >
+        <button
+          onClick={() => setActiveTab("all")}
+          style={{
+            padding: "12px 22px",
+            borderRadius: "10px",
+            border: "1px solid #2563eb",
+            backgroundColor:
+              activeTab === "all" ? "#2563eb" : "transparent",
+            color: "white",
+            cursor: "pointer",
+            fontWeight: "bold",
+          }}
+        >
+          All Tutors
+        </button>
+
+        <button
+          onClick={() => setActiveTab("saved")}
+          style={{
+            padding: "12px 22px",
+            borderRadius: "10px",
+            border: "1px solid #2563eb",
+            backgroundColor:
+              activeTab === "saved" ? "#2563eb" : "transparent",
+            color: "white",
+            cursor: "pointer",
+            fontWeight: "bold",
+          }}
+        >
+          ♥ Saved Tutors
+        </button>
+      </div>
+
 
       {/* Tutor Grid */}
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
           gap: "20px",
         }}
       >
 
         {/* Generate Tutor Cards */}
         {tutors.map((tutor, index) => (
-
           <div
             key={index}
             style={{
               backgroundColor: "#03163d",
-              padding: "25px",
-              borderRadius: "20px",
-              boxShadow: "0px 4px 20px rgba(0,0,0,0.2)",
-            }}
-          >
+              padding: "18px",
+              borderRadius: "14px",
+              border: "1px solid #102a5c",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+            }}>
 
             {/* Avatar */}
             <div
@@ -163,69 +206,81 @@ const handleBookTutor = async (tutorId) => {
 
 
             {/* Tutor Name */}
-            <h2 style={{ marginTop: 0 }}>
+            <h2 style={{ margin: "0 0 6px 0", fontSize: "20px", marginTop: 0 }}>
               {tutor.name}
             </h2>
 
 
             {/* Subject */}
-            <p style={{ color: "#60a5fa", marginTop: "-10px" }}>
+            <p style={{ color: "#60a5fa", marginTop: "-10px", margin: "0 0 12px 0", fontSize: "14px", }}>
               {tutor.subject}
             </p>
 
-
-            <p>
-               ${tutor.price}/hour
+            {/**Price**/}
+            <p style={{ margin: "0 0 8px 0", frontSize: "15px", frontWeight: "bold", }}>
+              ${tutor.price}/hour
             </p>
 
-            <p style={{ color: "#22c55e" }}>
+            {/**Bio**/}
+            <p style={{ margin: "0 0 10px 0", fontSize: "13px", lineHeight: "1.5", color: "#cbd5e1", }}>
+              {tutor.bio}
+            </p>
+
+            {/* Availability */}
+            <p style={{ color: "#22c55e", margin: "0 0 15px 0", fontSize: "13px" }}>
               ● Available Now
             </p>
 
 
-            {/* Experience */}
+            {/**  Experience 
             <p style={{ color: "#94a3b8" }}>
               {tutor.experience}
-            </p>
+            </p>*/}
 
 
-            {/* Bio */}
-            <p style={{ lineHeight: "1.6" }}>
-              {tutor.bio}
-            </p>
 
-
-            {/* Button */}
-            <button
-                onClick={() =>navigate(`/book/${tutor._id}`)}
-              style={{width: "100%", padding: "12px", marginTop: "15px",
-                backgroundColor: "#2563eb",color: "white", border: "none",borderRadius: "12px",
-                cursor: "pointer",fontWeight: "bold",
-              }}
-            >
-              Book Session
-            </button>
-
-            {/* Save Tutor */}
-            <button
-              onClick={() =>
-                handleSaveTutor(tutor._id)
-              }
+            {/* Buttons */}
+            <div
               style={{
-                width: "100%",
-                padding: "12px",
-                marginTop: "10px",
-                backgroundColor: "transparent",
-                color: "#60a5fa",
-                border: "1px solid #2563eb",
-                borderRadius: "12px",
-                cursor: "pointer",
-                fontWeight: "bold",
-              }}
-            >
-              ♡ Save Tutor
-            </button>
+                display: "flex",
+                gap: "8px",
+              }}>
+              {/* Book */}
+              <button
+                onClick={() => navigate(`/book/${tutor._id}`)}
+                style={{
+                  flex: 1,
+                  padding: "9px 8px",
+                  backgroundColor: "#2563eb",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  fontWeight: "bold",
+                  fontSize: "12px",
+                }}
+              >
+                Book Session
+              </button>
 
+              {/* Save */}
+              <button
+                onClick={() => handleSaveTutor(tutor._id)}
+                style={{
+                  flex: 1,
+                  padding: "9px 8px",
+                  backgroundColor: "transparent",
+                  color: "#cbd5e1",
+                  border: "1px solid #2563eb",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  fontWeight: "bold",
+                  fontSize: "12px",
+                }}
+              >
+                ♡ Save Tutor
+              </button>
+            </div>
           </div>
 
         ))}

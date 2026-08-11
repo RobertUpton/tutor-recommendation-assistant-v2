@@ -1,16 +1,55 @@
-# React + Vite
+# TutorMatch AI - Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The frontend application for TutorMatch AI, an AI-powered tutoring platform that allows students to find tutors, manage tutoring sessions, and interact with their account.
 
-Currently, two official plugins are available:
+The client is built using React and Vite and communicates with the TutorMatch AI Express backend through REST API requests.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- User registration and login
+- JWT-based authentication
+- Protected application routes
+- Student dashboard
+- Browse available tutors
+- View tutor information
+- Book tutoring sessions
+- Save tutors to a user's account
+- User profile and settings
+- Navigation through the dashboard layout
+- Responsive tutor card layout
+- Backend API integration
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Technologies Used
 
-## Expanding the ESLint configuration
+- React
+- Vite
+- JavaScript
+- React Router
+- CSS / Inline Styling
+- Fetch API
+- JWT authentication
+- ESLint
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project Structure
+
+```text
+client/
+├── public/
+├── src/
+│   ├── components/
+│   │   └── DashboardLayout.jsx
+│   │
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   ├── Login.jsx
+│   │   ├── Register.jsx
+│   │   ├── Dashboard.jsx
+│   │   ├── Tutors.jsx
+│   │   └── ...
+│   │
+│   ├── App.jsx
+│   └── main.jsx
+│
+├── package.json
+├── vite.config.js
+└── README.md

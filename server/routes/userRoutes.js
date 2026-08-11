@@ -2,26 +2,42 @@ const express = require("express");
 
 const router = express.Router();
 
-
+// Import user controller functions
 const {
   saveTutor,
-} = require("../controllers/userController");
-
-const protect = require("../middleware/authMiddleware");
-
-router.post(
-  "/save-tutor/:tutorId",
-  protect,
-  saveTutor
-);
-
-const {
+  getSavedTutors,
+  removeSavedTutor,
   getProfile,
   updateProfile,
   updateSettings,
   deleteAccount,
 } = require("../controllers/userController");
 
+// Authentication middleware
+const protect = require("../middleware/authMiddleware");
+
+// Save tutor
+router.post(
+  "/save-tutor/:tutorId",
+  protect,
+  saveTutor
+);
+
+//Get saved tutors
+router.get(
+  "/saved-tutors",
+  protect,
+  getSavedTutors
+);
+
+// Remove a saved tutor
+router.delete(
+  "/save-tutor/:tutorId",
+  protect,
+  removeSavedTutor
+);
+
+{/**User profiles */ }
 router.get(
   "/:id",
   getProfile
@@ -41,5 +57,7 @@ router.delete(
   "/:id",
   deleteAccount
 );
+
+
 
 module.exports = router;

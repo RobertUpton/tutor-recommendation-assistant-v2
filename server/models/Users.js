@@ -42,10 +42,16 @@ const userSchema = new mongoose.Schema(
 
     bio: {
       type: String,
-      default: "", },  }, {timestamps: true,},
-
-    
-  
+      default: "",
+    },
+    savedTutors: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Tutors",
+      },
+    ],
+  },
+  { timestamps: true }
 );
 
 module.exports = mongoose.model("User", userSchema);

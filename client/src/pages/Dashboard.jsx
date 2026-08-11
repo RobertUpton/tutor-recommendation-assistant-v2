@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import DashboardLayout from "../components/DashboardLayout";
 
 function Dashboard() {
+const user = JSON.parse(localStorage.getItem("user") || "{}");
 
-  const user = JSON.parse(
-    localStorage.getItem("user") || "{}"
-  );
 
   const [stats, setStats] = useState({
     upcomingSessions: 0,
@@ -13,37 +11,74 @@ function Dashboard() {
     completedSessions: 0,
   });
 
-  useEffect(() => {
-  const token = localStorage.getItem("token");
+  useEffect(() => {const token = localStorage.getItem("token");
 
   // No logged-in user means keep dashboard statistics at 0
   if (!token) {
     return;
   }
+  
 
-  fetch("http://localhost:5000/api/dashboard", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Failed to fetch dashboard statistics");
+  
+    // Fetch dashboard statistics
+    const fetchDashboardStats = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/dashboard",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch dashboard statistics");
+        }
+
+        const data = await response.json();
+
+        setStats((prevStats) => ({
+          ...prevStats,
+          upcomingSessions: data.upcomingSessions || 0,
+          completedSessions: data.completedSessions || 0,
+        }));
+      } catch (error) {
+        console.error("Dashboard Error:", error);
       }
+    };
 
-      return response.json();
-    })
-    .then((data) => {
-      setStats({
-        upcomingSessions: data.upcomingSessions || 0,
-        savedTutors: data.savedTutors || 0,
-        completedSessions: data.completedSessions || 0,
-      });
-    })
-    .catch((error) => {
-      console.error("Dashboard Error:", error);
-    });
-}, []);
+    // Fetch saved tutors
+    const fetchSavedTutors = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/users/saved-tutors",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch saved tutors");
+        }
+
+        const data = await response.json();
+
+        setStats((prevStats) => ({
+          ...prevStats,
+          savedTutors: Array.isArray(data) ? data.length : 0,
+        }));
+      } catch (error) {
+        console.error("Saved Tutors Error:", error);
+      }
+    };
+
+    fetchDashboardStats();
+    fetchSavedTutors();
+  }, []);
+
 
   return (
 

@@ -1,6 +1,7 @@
 const User = require("../models/Users");
 const Booking = require("../models/Bookings");
 const Tutor = require("../models/Tutors");
+
 // Save a tutor
 const saveTutor = async (req, res) => {
   try {
@@ -33,6 +34,61 @@ const saveTutor = async (req, res) => {
     });
   } catch (error) {
     console.error("Save tutor error:", error);
+
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+// Get saved tutors
+const getSavedTutors = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id)
+      .populate("savedTutors");
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found.",
+      });
+    }
+
+    res.status(200).json(user.savedTutors);
+  } catch (error) {
+    console.error("Get saved tutors error:", error);
+
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+
+// Remove saved tutor
+const removeSavedTutor = async (req, res) => {
+  try {
+    const tutorId = req.params.tutorId;
+
+    const user = await User.findById(req.user._id);
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found.",
+      });
+    }
+
+    user.savedTutors = user.savedTutors.filter(
+      (id) => id.toString() !== tutorId
+    );
+
+    await user.save();
+
+    res.status(200).json({
+      message: "Tutor removed from saved tutors.",
+      savedTutors: user.savedTutors,
+    });
+  } catch (error) {
+    console.error("Remove saved tutor error:", error);
 
     res.status(500).json({
       message: error.message,
@@ -123,8 +179,6 @@ const updateSettings = async (req, res) => {
 };
 
 //account deleting
-
-
 const deleteAccount = async (req, res) => {
   try {
 
@@ -158,6 +212,8 @@ const deleteAccount = async (req, res) => {
 
 module.exports = {
   saveTutor,
+  getSavedTutors,
+  removeSavedTutor,
   getProfile,
   updateProfile,
   updateSettings,

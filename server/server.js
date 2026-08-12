@@ -10,6 +10,7 @@ const Tutor = require("./models/Tutors");
 const bookingRoutes = require("./routes/bookingRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const userRoutes = require("./routes/userRoutes");
+const Tutors = require("./models/Tutors");
 //const aiRoutes = require("./routes/aiRoutes");
 
 const app = express();
@@ -48,7 +49,7 @@ app.get("/test-tutor", async (req, res) => {
       bio: "Experienced math tutor",
     });
 
-    res.json(tutor);
+    res.json(Tutor);
   } catch (error) {
     res.status(500).json({
       message: error.message,

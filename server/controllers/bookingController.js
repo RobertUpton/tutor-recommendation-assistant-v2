@@ -1,12 +1,11 @@
 const Booking = require("../models/Bookings");
 
-
 // Get All Bookings
 const getBookings = async (req, res) => {
   try {
     const bookings = await Booking.find()
       .populate("userId", "name email")
-      .populate("tutorId", "name subject");
+      .populate("tutorId", "name subject price");
 
     res.status(200).json(bookings);
   } catch (error) {
@@ -43,14 +42,12 @@ const createBooking = async (req, res) => {
       message: "Booking created successfully.",
       booking,
     });
-
   } catch (error) {
     res.status(500).json({
       message: error.message,
     });
   }
 };
-
 
 // Get Bookings By User
 const getUserBookings = async (req, res) => {
@@ -61,7 +58,6 @@ const getUserBookings = async (req, res) => {
       .populate("tutorId", "name subject price");
 
     res.status(200).json(bookings);
-
   } catch (error) {
     res.status(500).json({
       message: error.message,
@@ -72,7 +68,9 @@ const getUserBookings = async (req, res) => {
 // Cancel Booking
 const deleteBooking = async (req, res) => {
   try {
-    const booking = await Booking.findByIdAndDelete(req.params.id);
+    const booking = await Booking.findByIdAndDelete(
+      req.params.id
+    );
 
     if (!booking) {
       return res.status(404).json({
@@ -83,7 +81,6 @@ const deleteBooking = async (req, res) => {
     res.status(200).json({
       message: "Booking cancelled successfully.",
     });
-
   } catch (error) {
     res.status(500).json({
       message: error.message,

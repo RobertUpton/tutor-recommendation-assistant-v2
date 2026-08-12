@@ -326,8 +326,8 @@ function Tutors() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit, minmax(300px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fill, 290px)",
+              justifyContent: "start",
               gap: "20px",
             }}
           >
@@ -345,14 +345,11 @@ function Tutors() {
                   <div
                     key={tutor._id}
                     style={{
-                      backgroundColor:
-                        "#03163d",
+                      backgroundColor:"#03163d",
                       padding: "18px",
                       borderRadius: "14px",
-                      border:
-                        "1px solid #102a5c",
-                      boxShadow:
-                        "0 4px 12px rgba(0, 0, 0, 0.15)",
+                      border:"1px solid #102a5c",
+                      boxShadow:"0 4px 12px rgba(0, 0, 0, 0.15)",
                     }}
                   >
 
@@ -362,11 +359,9 @@ function Tutors() {
                         width: "60px",
                         height: "60px",
                         borderRadius: "50%",
-                        backgroundColor:
-                          "#2563eb",
+                        backgroundColor:"#2563eb",
                         display: "flex",
-                        justifyContent:
-                          "center",
+                        justifyContent:"center",
                         alignItems: "center",
                         fontWeight: "bold",
                         fontSize: "20px",
@@ -379,8 +374,7 @@ function Tutors() {
                     {/* Tutor Name */}
                     <h2
                       style={{
-                        margin:
-                          "0 0 6px 0",
+                        margin:"0 0 6px 0",
                         fontSize: "20px",
                       }}
                     >
@@ -391,8 +385,7 @@ function Tutors() {
                     <p
                       style={{
                         color: "#60a5fa",
-                        margin:
-                          "0 0 12px 0",
+                        margin:"0 0 12px 0",
                         fontSize: "14px",
                       }}
                     >
@@ -402,8 +395,7 @@ function Tutors() {
                     {/* Price */}
                     <p
                       style={{
-                        margin:
-                          "0 0 8px 0",
+                        margin:"0 0 8px 0",
                         fontSize: "15px",
                         fontWeight: "bold",
                       }}
@@ -414,8 +406,7 @@ function Tutors() {
                     {/* Bio */}
                     <p
                       style={{
-                        margin:
-                          "0 0 10px 0",
+                        margin:"0 0 10px 0",
                         fontSize: "13px",
                         lineHeight: "1.5",
                         color: "#cbd5e1",
@@ -428,8 +419,7 @@ function Tutors() {
                     <p
                       style={{
                         color: "#22c55e",
-                        margin:
-                          "0 0 15px 0",
+                        margin:"0 0 15px 0",
                         fontSize: "13px",
                       }}
                     >
@@ -447,22 +437,17 @@ function Tutors() {
                       {/* Book Session */}
                       <button
                         onClick={() =>
-                          navigate(
-                            `/book/${tutor._id}`
-                          )
+                          navigate( `/book/${tutor._id}`)
                         }
                         style={{
                           flex: 1,
-                          padding:
-                            "9px 8px",
-                          backgroundColor:
-                            "#2563eb",
+                          padding:"9px 8px",
+                          backgroundColor: "#2563eb",
                           color: "white",
                           border: "none",
                           borderRadius: "8px",
                           cursor: "pointer",
-                          fontWeight:
-                            "bold",
+                          fontWeight:"bold",
                           fontSize: "12px",
                         }}
                       >
@@ -529,24 +514,24 @@ function Tutors() {
                                 tutor._id
                               )
                             }
-                    style={{
-                      flex: 1,
-                      padding:
-                        "9px 8px",
-                      backgroundColor:
-                        "transparent",
-                      color:
-                        "#f87171",
-                      border:
-                        "1px solid #ef4444",
-                      borderRadius:
-                        "8px",
-                      cursor:
-                        "pointer",
-                      fontWeight:
-                        "bold",
-                      fontSize:
-                        "12px",
+                            style={{
+                              flex: 1,
+                              padding:
+                                "9px 8px",
+                              backgroundColor:
+                                "transparent",
+                              color:
+                                "#f87171",
+                              border:
+                                "1px solid #ef4444",
+                              borderRadius:
+                                "8px",
+                              cursor:
+                                "pointer",
+                              fontWeight:
+                                "bold",
+                              fontSize:
+                                "12px",
                             }}
                           >
                             ♥ Remove Saved

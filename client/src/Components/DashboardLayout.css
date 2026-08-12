@@ -1,95 +1,94 @@
-/* Main dashboard background */
+/* Reset page sizing */
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Main dashboard container */
 .dashboard-layout {
-  min-height: 100vh;
-  background: #020b22;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #020b22;
   color: white;
 }
 
 /* Top navigation bar */
 .dashboard-topbar {
-  height: 72px;
-  background: #03163d;
-  border-bottom: 1px solid #10244a;
-
+  height: 65px;
+  min-height: 65px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   padding: 0 30px;
+  background-color: #061a45;
+  border-bottom: 1px solid #16356d;
   box-sizing: border-box;
 }
 
-/* Left side of navbar */
+/* Left side of top bar */
 .topbar-left {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 25px;
 }
 
-/* TutorMatch logo */
+/* Dashboard logo */
 .dashboard-logo {
   margin: 0;
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
+/* Logo AI text */
 .dashboard-logo span {
   color: #3b82f6;
 }
 
-/* Sidebar menu button */
+/* Sidebar toggle */
 .sidebar-toggle {
   background: transparent;
   border: none;
   color: white;
-
   font-size: 24px;
   cursor: pointer;
-
-  padding: 6px;
-  border-radius: 8px;
-
-  transition: background 0.2s ease;
 }
 
-.sidebar-toggle:hover {
-  background: #0b214c;
-}
-
-/* Right side of navbar */
+/* Right side of top bar */
 .topbar-right {
   display: flex;
   align-items: center;
-  gap: 26px;
+  gap: 25px;
 }
 
 /* Notification */
 .notification {
   position: relative;
   font-size: 22px;
-  cursor: pointer;
 }
 
+/* Notification badge */
 .notification-badge {
   position: absolute;
-  top: -7px;
+  top: -8px;
   right: -8px;
-
-  width: 18px;
-  height: 18px;
-
-  background: #ef4444;
-  color: white;
-
-  border-radius: 50%;
-
+  width: 17px;
+  height: 17px;
   display: flex;
   align-items: center;
   justify-content: center;
-
+  background-color: #ef4444;
+  color: white;
+  border-radius: 50%;
   font-size: 10px;
-  font-weight: 700;
+  font-weight: bold;
 }
 
 /* User information */
@@ -101,30 +100,21 @@
 
 /* User avatar */
 .user-avatar {
-  width: 42px;
-  height: 42px;
-
-  border-radius: 50%;
-
-  background: linear-gradient(
-    135deg,
-    #60a5fa,
-    #2563eb
-  );
-
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  font-size: 16px;
-  font-weight: 700;
+  background-color: #3b82f6;
+  border-radius: 50%;
+  font-weight: bold;
 }
 
 /* User name */
 .user-name {
   margin: 0;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: bold;
 }
 
 /* User role */
@@ -134,126 +124,150 @@
   font-size: 12px;
 }
 
-/* Main dashboard area */
+/* Dashboard body */
 .dashboard-body {
+  flex: 1;
+  min-height: 0;
   display: flex;
-  min-height: calc(100vh - 72px);
+  overflow: hidden;
 }
 
 /* Sidebar */
 .dashboard-sidebar {
-  width: 220px;
-
-  background: #03163d;
-  border-right: 1px solid #10244a;
-
-  padding: 28px 20px;
-
+  width: 210px;
+  min-width: 210px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-
   box-sizing: border-box;
-
-  transition: width 0.25s ease, padding 0.25s ease;
+  background-color: #061a45;
+  border-right: 1px solid #16356d;
+  overflow: hidden;
+  transition: width 0.25s ease;
 }
 
-/* Collapsed sidebar */
+/* Closed sidebar */
 .dashboard-sidebar.closed {
   width: 0;
-  padding-left: 0;
-  padding-right: 0;
-  overflow: hidden;
+  min-width: 0;
+  border-right: none;
 }
 
 /* Sidebar navigation */
 .sidebar-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex: 1;
+  padding: 25px 12px;
+  overflow: hidden;
 }
 
-/* Navigation links */
+/* Sidebar links */
 .sidebar-link {
-  display: flex;
-  align-items: center;
-
-  min-height: 48px;
-
-  padding: 0 14px;
-
-  border-radius: 12px;
-
-  color: #cbd5e1;
+  display: block;
+  margin-bottom: 8px;
+  padding: 13px 14px;
+  color: #e2e8f0;
   text-decoration: none;
-
-  font-size: 15px;
-  font-weight: 500;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
+  border-radius: 12px;
+  font-size: 14px;
+  box-sizing: border-box;
 }
 
-/* Navigation hover */
+/* Sidebar link hover */
 .sidebar-link:hover {
-  background: #071f4d;
-  color: white;
+  background-color: #0b2a63;
 }
 
-/* Active navigation item */
+/* Active sidebar link */
 .sidebar-link.active {
-  background: #071f4d;
+  background-color: #0b2a63;
   color: #3b82f6;
-
-  box-shadow:
-    inset 3px 0 0 #3b82f6;
+  border-left: 3px solid #3b82f6;
 }
 
-/* Navigation icon */
-.sidebar-icon {
-  width: 28px;
-  font-size: 18px;
-}
-
-/* Sign out section */
+/* Sidebar bottom area */
 .sidebar-bottom {
-  margin-top: auto;
+  padding: 15px 12px 25px;
+  flex-shrink: 0;
 }
 
 /* Sign out button */
 .signout-button {
   width: 100%;
-
-  min-height: 48px;
-
-  background: transparent;
-  color: #cbd5e1;
-
-  border: 1px solid #17305d;
+  padding: 13px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid #1e4178;
   border-radius: 12px;
-
   cursor: pointer;
-
-  font-size: 14px;
-  font-weight: 600;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
+  font-weight: bold;
 }
 
+/* Sign out hover */
 .signout-button:hover {
-  background: #071f4d;
-  color: white;
+  background-color: #0b2a63;
 }
 
 /* Main page content */
 .dashboard-content {
   flex: 1;
-
-  padding: 32px;
-
   min-width: 0;
+  min-height: 0;
+  height: 100%;
   box-sizing: border-box;
+  padding: 30px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Content scrollbar */
+.dashboard-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Content scrollbar track */
+.dashboard-content::-webkit-scrollbar-track {
+  background: #020b22;
+}
+
+/* Content scrollbar thumb */
+.dashboard-content::-webkit-scrollbar-thumb {
+  background: #1e4178;
+  border-radius: 10px;
+}
+
+/* Content scrollbar thumb hover */
+.dashboard-content::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+/* Smaller screens */
+@media (max-width: 900px) {
+  .dashboard-sidebar {
+    width: 190px;
+    min-width: 190px;
+  }
+
+  .dashboard-content {
+    padding: 25px;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 700px) {
+  .dashboard-sidebar {
+    width: 170px;
+    min-width: 170px;
+  }
+
+  .dashboard-content {
+    padding: 20px;
+  }
+
+  .topbar-right {
+    gap: 10px;
+  }
+
+  .user-info > div:last-child {
+    display: none;
+  }
 }

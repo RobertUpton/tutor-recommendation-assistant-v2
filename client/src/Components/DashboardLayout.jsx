@@ -26,7 +26,10 @@ function DashboardLayout({ children }) {
   };
 
   return (
-    <div className="dashboard-layout">
+    <div
+      className={`dashboard-layout ${!sidebarOpen ? "sidebar-closed" : ""
+        }`}
+    >
 
       {/* Top navigation bar */}
       <header className="dashboard-topbar">
@@ -101,9 +104,8 @@ function DashboardLayout({ children }) {
 
         {/* Sidebar */}
         <aside
-          className={`dashboard-sidebar ${
-            !sidebarOpen ? "closed" : ""
-          }`}
+          className={`dashboard-sidebar ${!sidebarOpen ? "closed" : ""
+            }`}
         >
 
           {/* Navigation */}
@@ -112,12 +114,11 @@ function DashboardLayout({ children }) {
             <NavLink
               to="/Dashboard"
               className={({ isActive }) =>
-                `sidebar-link ${
-                  isActive ? "active" : ""
+                `sidebar-link ${isActive ? "active" : ""
                 }`
               }
             >
-              
+
 
               Dashboard
             </NavLink>
@@ -126,12 +127,11 @@ function DashboardLayout({ children }) {
             <NavLink
               to="/Tutors"
               className={({ isActive }) =>
-                `sidebar-link ${
-                  isActive ? "active" : ""
+                `sidebar-link ${isActive ? "active" : ""
                 }`
               }
             >
-            
+
 
               Browse Tutors
             </NavLink>
@@ -140,8 +140,7 @@ function DashboardLayout({ children }) {
             <NavLink
               to="/Bookings"
               className={({ isActive }) =>
-                `sidebar-link ${
-                  isActive ? "active" : ""
+                `sidebar-link ${isActive ? "active" : ""
                 }`
               }
             >
@@ -152,20 +151,18 @@ function DashboardLayout({ children }) {
             <NavLink
               to="/Messages"
               className={({ isActive }) =>
-                `sidebar-link ${
-                  isActive ? "active" : ""
+                `sidebar-link ${isActive ? "active" : ""
                 }`
               }
             >
-               Messages
+              Messages
             </NavLink>
 
 
             <NavLink
               to="/Profile"
               className={({ isActive }) =>
-                `sidebar-link ${
-                  isActive ? "active" : ""
+                `sidebar-link ${isActive ? "active" : ""
                 }`
               }
             >
@@ -176,8 +173,7 @@ function DashboardLayout({ children }) {
             <NavLink
               to="/Settings"
               className={({ isActive }) =>
-                `sidebar-link ${
-                  isActive ? "active" : ""
+                `sidebar-link ${isActive ? "active" : ""
                 }`
               }
             >
@@ -194,7 +190,7 @@ function DashboardLayout({ children }) {
               className="signout-button"
               onClick={handleLogout}
             >
-               Sign Out
+              Sign Out
             </button>
 
           </div>

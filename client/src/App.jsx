@@ -39,7 +39,7 @@ function AppContent() {
         <Route path="/messages" element={<Messages />}   />
         <Route path="/settings" element={<Settings />}   />
         
-          {//  <Route path="/recommendation"element= {<AIRecommendation />} />*/}
+          {/*  <Route path="/recommendation"element= {<AIRecommendation />} />*/}
       </Routes>
 
     </>

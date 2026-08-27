@@ -9,6 +9,7 @@ import Tutors from "./pages/Tutors";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import Bookings from "./pages/Bookings";
+//<Route path="/messages" element={<Messages />} />
 import BookTutor from "./pages/BookTutor";
 //import AIRecommendation from "./pages/AIRecommendation";
 
@@ -36,10 +37,10 @@ function AppContent() {
         <Route path="/book/:id" element= {<BookTutor />} />
         <Route path="/bookings" element=  {<Bookings />} />
         <Route path="/profile" element={<Profile />}     />
-        <Route path="/messages" element={<Messages />}   />
+        
         <Route path="/settings" element={<Settings />}   />
         
-          {/*  <Route path="/recommendation"element= {<AIRecommendation />} />*/}
+          {/*  <Route path="/recommendation"element= {<AIRecommendation />} /><Route path="/messages" element={<Messages />}   />*/}
       </Routes>
 
     </>

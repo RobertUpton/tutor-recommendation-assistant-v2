@@ -6,9 +6,8 @@ import Navbar from "./components/Navbar";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Tutors from "./pages/Tutors";
-//import Messages from "./pages/Messages";
 import Profile from "./pages/Profile";
-//import Settings from "./pages/Settings";
+import Settings from "./pages/Settings";
 import Bookings from "./pages/Bookings";
 import BookTutor from "./pages/BookTutor";
 //import AIRecommendation from "./pages/AIRecommendation";
@@ -36,15 +35,11 @@ function AppContent() {
         <Route path="/Tutors" element=      {<Tutors />} />
         <Route path="/book/:id" element= {<BookTutor />} />
         <Route path="/bookings" element=  {<Bookings />} />
-        <Route path="/profile" element=    {<Profile />} />
-        {/** 
+        <Route path="/profile" element={<Profile />}     />
+        <Route path="/messages" element={<Messages />}   />
+        <Route path="/settings" element={<Settings />}   />
         
-        <Route path="/messages" element=  {<Messages />} />
-        
-        <Route path="/settings" element=  {<Settings />} />
-        
-        
-        <Route path="/recommendation"element= {<AIRecommendation />} />*/}
+          {//  <Route path="/recommendation"element= {<AIRecommendation />} />*/}
       </Routes>
 
     </>

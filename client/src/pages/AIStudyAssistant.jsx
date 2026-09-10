@@ -165,7 +165,7 @@ function AIStudyAssistant() {
                   ...styles.askButton,
                   opacity:
                     loading ||
-                    !message.trim()
+                      !message.trim()
                       ? 0.5
                       : 1,
                 }}

@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+
 // Imports required packages, connections, & routes
 const express = require("express");
 const cors = require("cors");
@@ -11,7 +12,7 @@ const bookingRoutes = require("./routes/bookingRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const userRoutes = require("./routes/userRoutes");
 const Tutors = require("./models/Tutors");
-//const aiRoutes = require("./routes/aiRoutes");
+const aiRoutes = require("./routes/aiRoutes");
 
 const app = express();
 
@@ -27,7 +28,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/tutors", tutorRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/dashboard", dashboardRoutes);
-//app.use("/api/ai", aiRoutes);
+app.use("/api/ai", aiRoutes);
 
 app.use(
   "/api/users",

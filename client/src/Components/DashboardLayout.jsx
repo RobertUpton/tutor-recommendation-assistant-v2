@@ -104,78 +104,57 @@ function DashboardLayout({ children }) {
 
         {/* Sidebar */}
         <aside
-          className={`dashboard-sidebar ${!sidebarOpen ? "closed" : ""
-            }`}
+          className={`dashboard-sidebar ${!sidebarOpen ? "closed" : ""  }`}
         >
 
           {/* Navigation */}
           <nav className="sidebar-nav">
 
+            {/* Dashboard */}
             <NavLink
-              to="/Dashboard"
-              className={({ isActive }) =>
-                `sidebar-link ${isActive ? "active" : ""
-                }`
-              }
+              to="/Dashboard" className={({ isActive }) => `sidebar-link ${isActive ? "active" : "" }`}
             >
-
-
               Dashboard
             </NavLink>
 
-
+            {/* Browse Tutors */}
             <NavLink
-              to="/Tutors"
-              className={({ isActive }) =>
-                `sidebar-link ${isActive ? "active" : ""
-                }`
-              }
+              to="/Tutors"className={({ isActive }) => `sidebar-link ${isActive ? "active" : "" }`}
             >
-
-
               Browse Tutors
             </NavLink>
 
-
+            {/* My Bookings */}
             <NavLink
-              to="/Bookings"
-              className={({ isActive }) =>
-                `sidebar-link ${isActive ? "active" : ""
-                }`
-              }
+              to="/Bookings" className={({ isActive }) =>`sidebar-link ${isActive ? "active" : "" }`}
             >
               My Bookings
             </NavLink>
-
-
+ 
+            {/* AI Study Assistant */}
             <NavLink
-              to="/Messages"
-              className={({ isActive }) =>
-                `sidebar-link ${isActive ? "active" : ""
-                }`
-              }
+              to="/aIstudy" className={({ isActive }) => `sidebar-link ${isActive ? "active" : ""}`}
+            >
+              AI Study Assistant
+            </NavLink>
+
+            {/* Messages */}
+            <NavLink
+              to="/Messages" className={({ isActive }) => `sidebar-link ${isActive ? "active" : "" }`}
             >
               Messages
             </NavLink>
 
-
+            {/* Profile */}
             <NavLink
-              to="/Profile"
-              className={({ isActive }) =>
-                `sidebar-link ${isActive ? "active" : ""
-                }`
-              }
+              to="/Profile" className={({ isActive }) => `sidebar-link ${isActive ? "active" : "" }`}
             >
               Profile
             </NavLink>
 
-
+            {/* Settings */}
             <NavLink
-              to="/Settings"
-              className={({ isActive }) =>
-                `sidebar-link ${isActive ? "active" : ""
-                }`
-              }
+              to="/Settings" className={({ isActive }) => `sidebar-link ${isActive ? "active" : "" }`}
             >
               Settings
             </NavLink>

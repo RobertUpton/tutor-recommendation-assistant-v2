@@ -11,7 +11,7 @@ import Settings from "./pages/Settings";
 import Bookings from "./pages/Bookings";
 //<Route path="/messages" element={<Messages />} />
 import BookTutor from "./pages/BookTutor";
-//import AIRecommendation from "./pages/AIRecommendation";
+import AIStudyAssistant from "./pages/AIStudyAssistant";
 
 
 
@@ -37,10 +37,12 @@ function AppContent() {
         <Route path="/book/:id" element= {<BookTutor />} />
         <Route path="/bookings" element=  {<Bookings />} />
         <Route path="/profile" element={<Profile />}     />
-        
+        <Route path="/aIstudy"element= {<AIStudyAssistant />} />
         <Route path="/settings" element={<Settings />}   />
         
-          {/*  <Route path="/recommendation"element= {<AIRecommendation />} /><Route path="/messages" element={<Messages />}   />*/}
+          
+          
+        {/*  <Route path="/messages" element={<Messages />}   />*/}
       </Routes>
 
     </>

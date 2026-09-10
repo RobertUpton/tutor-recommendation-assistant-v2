@@ -292,9 +292,35 @@ function AIStudyAssistant() {
       {/* Recent Questions */}
       <div style={styles.recentCard}>
 
-        <h2 style={styles.cardTitle}>
-          Recent Questions
-        </h2>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "15px",
+          }}
+        >
+          <h2 style={styles.cardTitle}>
+            Recent Questions
+          </h2>
+
+          {recentQuestions.length > 0 && (
+            <button
+              onClick={() => setRecentQuestions([])}
+              style={{
+                backgroundColor: "transparent",
+                border: "1px solid #31558d",
+                color: "#94a3b8",
+                padding: "7px 12px",
+                borderRadius: "8px",
+                cursor: "pointer",
+                fontSize: "13px",
+              }}
+            >
+              Clear
+            </button>
+          )}
+        </div>
 
         {recentQuestions.length === 0 ? (
           <p style={styles.noQuestions}>

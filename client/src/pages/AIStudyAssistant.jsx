@@ -1,5 +1,10 @@
 import { useState } from "react";
 import DashboardLayout from "../components/DashboardLayout";
+import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
+import "./../styles/AIStudyAssistant.css";
 
 function AIStudyAssistant() {
   const [message, setMessage] = useState("");
@@ -103,12 +108,17 @@ function AIStudyAssistant() {
           {response ? (
             <div style={styles.responseBox}>
               <div style={styles.responseHeader}>
-                <span>🤖 TutorMatch AI</span>
+                <span>TutorMatch AI</span>
               </div>
 
-              <p style={styles.responseText}>
-                {response}
-              </p>
+              <div className="ai-response" style={styles.responseText}>
+                <ReactMarkdown
+                  remarkPlugins={[remarkMath]}
+                  rehypePlugins={[rehypeKatex]}
+                >
+                  {response}
+                </ReactMarkdown>
+              </div>
             </div>
           ) : (
             <div style={styles.emptyState}>
@@ -210,7 +220,7 @@ function AIStudyAssistant() {
                 </strong>
 
                 <small>
-                  Make difficult topics easier
+                  : Make difficult topics easier
                 </small>
               </span>
             </button>
@@ -233,7 +243,7 @@ function AIStudyAssistant() {
                 </strong>
 
                 <small>
-                  Test your knowledge
+                  : Test your knowledge
                 </small>
               </span>
             </button>
@@ -256,7 +266,7 @@ function AIStudyAssistant() {
                 </strong>
 
                 <small>
-                  Build a personalized plan
+                  : Build a personalized plan
                 </small>
               </span>
             </button>
@@ -279,7 +289,7 @@ function AIStudyAssistant() {
                 </strong>
 
                 <small>
-                  Get tutor recommendations
+                  : Get tutor recommendations
                 </small>
               </span>
             </button>
@@ -457,7 +467,7 @@ const styles = {
   responseText: {
     color: "#e2e8f0",
     lineHeight: "1.7",
-    whiteSpace: "pre-wrap",
+    fontSize: "15px",
   },
 
   inputArea: {
@@ -564,5 +574,6 @@ const styles = {
     color: "#64748b",
   },
 };
+
 
 export default AIStudyAssistant;

@@ -1,0 +1,51 @@
+/* AI response headings */
+.ai-response h1,
+.ai-response h2,
+.ai-response h3 {
+  color: #ffffff;
+  margin-top: 18px;
+  margin-bottom: 10px;
+}
+
+/* AI response paragraphs */
+.ai-response p {
+  margin: 10px 0;
+}
+
+/* AI response lists */
+.ai-response ul,
+.ai-response ol {
+  padding-left: 25px;
+  margin: 10px 0;
+}
+
+/* AI response list items */
+.ai-response li {
+  margin-bottom: 6px;
+}
+
+/* AI response bold text */
+.ai-response strong {
+  color: #ffffff;
+}
+
+/* Inline code */
+.ai-response code {
+  background: #0b2b66;
+  padding: 3px 6px;
+  border-radius: 5px;
+}
+
+/* Code blocks */
+.ai-response pre {
+  background: #061735;
+  padding: 15px;
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+/* Mathematical equations */
+.ai-response .katex-display {
+  overflow-x: auto;
+  margin: 20px 0;
+}
